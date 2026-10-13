@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bridgle challenge</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>A friend challenged you</h1>
+  <p>Build a bridge of words between the same two cliffs, then see their bridge beneath yours.</p>
+  <a id="play" class="button" href="https://play.google.com/store/apps/details?id=com.lyudmil.bridgle.app">Install Bridgle</a>
+  <p class="muted">After installing, open the game and the challenge starts automatically.</p>
+</main>
+<script>
+  var PACKAGE = "com.lyudmil.bridgle.app";
+  var payload = location.search.replace(/^\?/, "");
+  var url = "https://play.google.com/store/apps/details?id=" + PACKAGE +
+    (payload ? "&referrer=" + encodeURIComponent(payload) : "");
+  document.getElementById("play").href = url;
+  if (/Android/i.test(navigator.userAgent)) setTimeout(function () { location.replace(url); }, 800);
+</script>
+</body>
+</html>
