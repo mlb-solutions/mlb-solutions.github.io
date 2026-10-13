@@ -1,0 +1,16 @@
+:root { color-scheme: light dark; --bg: #f7f6f3; --fg: #1f2330; --muted: #5d6272; --card: #fff; --line: #e3e1da; --accent: #c2410c; }
+@media (prefers-color-scheme: dark) { :root { --bg: #14161d; --fg: #e9e7e2; --muted: #9a9eac; --card: #1c1f29; --line: #2b2f3b; --accent: #f08a4b; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header, main, footer { max-width: 760px; margin: 0 auto; padding: 0 1rem; }
+header { padding-top: 3rem; }
+h1 { font-size: 2rem; margin: 0 0 .25rem; letter-spacing: -.01em; }
+h2 { font-size: 1.1rem; margin: 2.5rem 0 1rem; }
+.lead { color: var(--muted); font-size: 1.1rem; margin: 0; }
+a { color: var(--accent); }
+.games { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem; }
+.card h3 { margin: 0 0 .25rem; }
+.card p { margin: 0 0 1rem; color: var(--muted); }
+.card .links a { margin-right: 1rem; font-weight: 600; }
+footer { padding: 3rem 1rem 2rem; color: var(--muted); font-size: .9rem; }

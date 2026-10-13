@@ -1,23 +1,43 @@
-# Bridgle site (GitHub Pages)
+# MLB Solutions website
 
-Static pages for Bridgle: privacy policy, store landing page and the challenge-link landing page.
-Designed to be the root of the organization Pages repo `mlb-solutions/mlb-solutions.github.io`, served at `https://mlb-solutions.github.io/`.
+Source of [mlb-solutions.github.io](https://mlb-solutions.github.io/), the public site for MLB Solutions' Android games. Static HTML, no build step, served by GitHub Pages from `main`.
 
-| URL | File | Use |
-|-----|------|-----|
-| `/bridgle/` | `bridgle/index.html` | landing page |
-| `/bridgle/privacy.html` | `bridgle/privacy.html` | Play Console privacy policy URL |
-| `/bridgle/s.html` | `bridgle/s.html` | challenge link; App Link target, forwards to Play with the install referrer |
-| `/.well-known/assetlinks.json` | `.well-known/assetlinks.json` | Android App Links verification |
+## Pages
 
-## Deploy
-1. Create the repo `mlb-solutions/mlb-solutions.github.io` (public) and copy the **contents** of this folder into its root, including `.nojekyll` (without it Pages hides `.well-known`).
-2. Repo Settings, Pages, deploy from branch `main`, folder `/ (root)`.
-3. Replace `REPLACE_WITH_PLAY_APP_SIGNING_SHA256` in `.well-known/assetlinks.json` with the app-signing SHA-256 from Play Console (App integrity). Add the upload key too if you test release builds locally. If the host already serves an `assetlinks.json` (for example Warmer's), append a statement to its array instead of replacing the file.
-4. Verify: `make site-check`, then `curl -s https://mlb-solutions.github.io/.well-known/assetlinks.json | python3 -m json.tool` and on a device `adb shell pm verify-app-links --re-verify com.lyudmil.bridgle.app`.
+| URL | Purpose |
+|-----|---------|
+| `/` | Company landing page |
+| `/warmer/` | Warmer landing page |
+| `/warmer/privacy.html` | Warmer privacy policy (Play Console policy and data deletion URL) |
+| `/warmer/c.html` | Warmer challenge link: Android App Link target, forwards to Google Play with the install referrer |
+| `/bridgle/` | Bridgle landing page |
+| `/bridgle/privacy.html` | Bridgle privacy policy |
+| `/bridgle/s.html` | Bridgle challenge link, same mechanism as Warmer |
+| `/.well-known/assetlinks.json` | Android App Links verification for both apps |
+| `/app-ads.txt` | AdMob seller authorization |
 
-`assetlinks.json` is only honored at the host root, which is why this must be the organization's `*.github.io` repo (or a custom domain).
+## Layout
 
-## Keep in sync with the app
-- Host and path constants live in `ChallengeUrl.kt` (phase 07): host `mlb-solutions.github.io`, path `/bridgle/s.html`, and the manifest `intent-filter`.
-- Update `bridgle/privacy.html` before shipping ads (phase 12), billing (phase 12) or Play Games (phase 13), then bump the "Last updated" date and update the Play Data safety form.
+```
+index.html, style.css, 404.html   company site
+warmer/                           Warmer pages and theme
+bridgle/                          Bridgle pages and theme
+.well-known/assetlinks.json       one statement per app
+app-ads.txt
+.nojekyll                         required so Pages serves .well-known
+```
+
+## Maintaining
+
+- `assetlinks.json` is only honored at the host root, so this must remain the organization's `*.github.io` repo. Add a statement per app; do not replace the file.
+- Host and path constants in the apps (`ChallengeUrl.kt`) must match the pages above and the manifest `intent-filter`.
+- When an app's data handling changes (ads, billing, leaderboards), update its `privacy.html`, bump "Last updated" and update the Play Data safety form.
+- Verify after deploy:
+  ```
+  curl -s https://mlb-solutions.github.io/.well-known/assetlinks.json | python3 -m json.tool
+  adb shell pm verify-app-links --re-verify com.warmer.app
+  ```
+
+## Contact
+
+lstamenov.mlb@gmail.com

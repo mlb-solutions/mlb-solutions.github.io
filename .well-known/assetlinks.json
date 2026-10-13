@@ -3,6 +3,14 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
+      "package_name": "com.warmer.app",
+      "sha256_cert_fingerprints": ["78:A7:AA:85:59:07:91:53:AF:C3:1C:19:7F:B9:17:D9:8B:17:B0:62:FE:75:C0:02:81:1C:F8:67:00:50:21:43"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
       "package_name": "com.lyudmil.bridgle.app",
       "sha256_cert_fingerprints": ["REPLACE_WITH_PLAY_APP_SIGNING_SHA256"]
     }

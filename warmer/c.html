@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warmer: a friend challenged you</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="center">
+  <h1>🔥 A friend challenged you on Warmer</h1>
+  <p class="muted">Warmer is a word game where you guess by meaning and get warmer or colder.</p>
+  <a class="button" id="play" href="https://play.google.com/store/apps/details?id=com.warmer.app">Get Warmer on Google Play</a>
+  <p><a href="privacy.html">Privacy policy</a></p>
+</main>
+<script>
+// carry the challenge through the install: Play hands "referrer" to the app on first launch
+var q = location.search.replace(/^\?/, "");
+if (q) document.getElementById("play").href += "&referrer=" + encodeURIComponent(q);
+</script>
+</body>
+</html>
